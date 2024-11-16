@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
+    public float jumpSpeed = 5f;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
@@ -15,24 +16,24 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
-    
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();   
+        rb = GetComponent<Rigidbody>();
         count = 0;
 
         SetCountText();
         winTextObject.SetActive(false);
     }
 
-    void OnMove (InputValue movementValue)
+    void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
-
+        
         movementX = movementVector.x;
         movementY = movementVector.y;
+
     }
 
     void SetCountText()
@@ -43,17 +44,22 @@ public class PlayerController : MonoBehaviour
             winTextObject.SetActive(true);
 
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+
+            // Cambio de escena
+            SceneManager.LoadScene("Escena2");
         }
     }
 
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-
         rb.AddForce(movement * speed);
+
+        UpdateJump();
     }
 
-    private void OnCollicionEnter(Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -62,9 +68,10 @@ public class PlayerController : MonoBehaviour
             // Update the winText to display "You Lose!"
             winTextObject.gameObject.SetActive(true);
             winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
-        }
 
-        
+            // en caso de perder llamo al menu
+            SceneManager.LoadScene("Menu");
+        }
 
     }
 
@@ -78,6 +85,15 @@ public class PlayerController : MonoBehaviour
 
             SetCountText();
         }
-        
+
     }
+
+    private void UpdateJump()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        }    
+    }
+
 }
