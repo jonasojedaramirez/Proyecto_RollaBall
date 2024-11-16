@@ -17,4 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Escena2.unity
     guid: 226e6ff89139ec0489e0c562414e37dc
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7231366ad9f4f4c45a8bf6e07617cf8b,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: fb30c93d096b5c842b9937a4071b2b72,
+      type: 2}
