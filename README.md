@@ -18,6 +18,7 @@
 ## Agradacimientos
 
 - Canal de Bam Apps tutoriales , me ayudo con el menu
+- Canal de Inside Unity por la ayuda con la camara en primera persona
 
 ## Licencia 📄
 
