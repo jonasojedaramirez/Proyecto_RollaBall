@@ -8,7 +8,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
-    public float jumpSpeed = 5f;
+    public float jumpSpeed = 5.0f;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
-        
+
         movementX = movementVector.x;
         movementY = movementVector.y;
 
@@ -52,10 +52,30 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement * speed);
+        
 
-        UpdateJump();
+        //UpdateJump();
+        var keyboard = Keyboard.current;
+        if (keyboard != null)
+        {
+            if (keyboard.spaceKey.isPressed)
+            {
+                Debug.Log("saltando");
+                Vector3 movement = new Vector3(0.0f, 20.0f, 0.0f);
+                rb.AddForce(movement);
+
+            }
+            else
+            {
+                Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+                rb.AddForce(movement * speed);
+                //Debug.Log("sin saltar");
+            }
+            
+        } 
+        
+
+
     }
 
 
@@ -90,10 +110,17 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateJump()
     {
-        if (Input.GetButtonDown("Jump"))
+        var keyboard = Keyboard.current;
+        if (keyboard != null)
         {
-            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-        }    
-    }
+            if (keyboard.spaceKey.wasPressedThisFrame)
+            {
+                Vector3 movement = new Vector3(0.0f, jumpSpeed, 0.0f);
+                rb.AddForce(movement);
 
+            }
+            
+        }
+
+    }
 }

@@ -1865,7 +1865,7 @@ Transform:
   m_GameObject: {fileID: 1042047365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1911,7 +1911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpSpeed: 5
+  jumpSpeed: 10
   countText: {fileID: 952156045}
   winTextObject: {fileID: 2093446008}
 --- !u!114 &1042047372
@@ -2884,7 +2884,7 @@ Transform:
   m_GameObject: {fileID: 1937974672}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.85, y: 0, z: 3.28}
+  m_LocalPosition: {x: 4.96, y: 0, z: 3.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
